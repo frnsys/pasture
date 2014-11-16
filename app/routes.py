@@ -35,6 +35,8 @@ def feed(id):
 @app.route('/eval/<string:id>', methods=['POST'])
 @requires_auth
 def eval(id):
+    socketio.emit('updating', {}, room=id)
+
     script = request.form['script']
     out, err, outpath = execute(script, id)
     tweets = load_tweets(outpath) if not err else []

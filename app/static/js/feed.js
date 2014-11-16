@@ -17,6 +17,7 @@ require(['config'], function() {
 
         // This event is when the script has been executed and tweets have been filtered.
         socket.on('executed', function(msg) {
+            $('.overlay').fadeOut();
             $('.feed ul').empty()
             $.each(msg.tweets, function(idx, tweet) {
                 $('.feed ul').append('\
@@ -25,6 +26,10 @@ require(['config'], function() {
                     +tweet.id+' | @'+tweet.user+' | ♻  '+tweet.retweet_count+' | ★ '+tweet.favorite_count
                     +'</div></li>');
             });
+        });
+
+        socket.on('updating', function() {
+            $('.overlay').fadeIn();
         });
     });
 
