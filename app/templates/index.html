@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<section class="workspace">
+    <form>
+<textarea name="script">
+# Enter your code here
+print(10)
+</textarea>
+        <button type="submit">Run</button>
+    </form>
+
+    <div class="results">
+        <div class="errors">
+            <h6>[Errors]</h6>
+            <pre class="data"></pre>
+        </div>
+        <div class="output">
+            <h6>[Output] <a href="/feed/{{ id }}" target="_blank" style="float:right;">[View Feed]</a></h6>
+            <pre class="data"></pre>
+        </div>
+    </div>
+</section>
+
+<script data-main="/js/main" src="/js/vendor/bower/requirejs/require.js"></script>
+
+{% endblock %}

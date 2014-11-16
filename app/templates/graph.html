@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<style>
+     html, body {
+         overflow: hidden;
+     }
+    .node circle {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+    .link {
+      stroke: #999;
+      stroke-opacity: .6;
+    }
+</style>
+
+<script data-main="/js/graph" src="/js/vendor/bower/requirejs/require.js"></script>
+
+{% endblock %}

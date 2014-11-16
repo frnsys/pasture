@@ -1,0 +1,79 @@
+/* ==========================================
+     Config
+     ========================================== */
+$primary-color: #111
+$secondary-color: #8765FB
+$background-color: #fafafa
+$primary-type: Verdana, Geneva, sans-serif
+$selection-background: #22D689
+
+@import url(http://fonts.googleapis.com/css?family=Inconsolata)
+
+@import "core/core"
+
+/* ==========================================
+     Your Styles
+     ========================================== */
+
+html
+    background: $background-color
+    font-family: 'Inconsolata', monospace
+    color: #111
+
+a, a:visited
+    color: $secondary-color
+
+button
+    @include transition
+    border: none
+    padding: 1em
+    color: #fff
+    background: darken($background-color, 16%)
+    width: 100%
+    &:hover
+        background: #22D689
+
+textarea
+    border: none
+    min-height: 20em
+    padding: 2em
+    width: 100%
+    resize: none
+
+.results, .feed
+    padding: 2em
+
+h6
+    font-weight: normal
+    margin: 0
+    color: #666
+
+.errors
+    margin: 2em 0 0 0
+    display: none
+    .data
+        color: #FC0D1B
+
+.tweet
+    margin: 2em 0
+    border: 1px solid #dadada
+    padding: 2em 1em
+.meta
+    color: #bbb
+    float: right
+
+@-webkit-keyframes loading
+    0%
+        background: darken($background-color, 16%)
+    100%
+        background: $secondary-color
+
+@keyframes loading
+    0%
+        background: darken($background-color, 16%)
+    100%
+        background: $secondary-color
+
+.running
+    -webkit-animation: loading 0.8s ease 0s infinite alternate
+    animation: loading 0.8s ease 0s infinite alternate
