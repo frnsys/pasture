@@ -3,6 +3,7 @@ SECRET_KEY = 'some-passphrase'
 
 AUTH_USER = 'admin'
 AUTH_PASS = 'password'
+VENV = '/env/newsautomata_filters/'
 
 # You can get these by creating a new app at
 # https://apps.twitter.com/
