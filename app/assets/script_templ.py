@@ -55,6 +55,11 @@ user_tweet_count
 user_following_count
 user_follower_count
 
+To "follow" a user, do:
+    follow(username)
+
+To get a list of tweets by a list of indices, do:
+    tweets_by_indices(indices)
 
 To change what tweets you see in your feed,
 define a `filter(tweets)` method which
