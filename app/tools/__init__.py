@@ -1,9 +1,17 @@
+"""
+These are methods which are exposed to the script executed for the user.
+Most of these are simplifications or convenience methods.
+"""
+
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def train_model(docs):
     # For tweets, highest max_df (1.0) and lowest min_def (0.0) work best.
     m = TfidfVectorizer(input='content', stop_words=None, lowercase=True, max_df=1.0, min_df=0.0, use_idf=True, smooth_idf=True)
     m.fit(docs)
+
+    # To vectorize, use m.transform(docs)
     return m
 
 
@@ -18,7 +26,8 @@ def sentiment(text):
     """
     t = TextBlob(text)
     s = t.sentiment
-    return s.polarity, s.subjectivity
+    #return s.polarity, s.subjectivity
+    return s.polarity
 
 
 import numpy as np
@@ -49,3 +58,19 @@ def dissimilar(in_vecs, vecs, threshold=1.1):
 def least_similar(in_vecs, vecs, n=5):
     sim_mat = cdist(in_vecs.todense(), vecs.todense())
     return np.fliplr(np.argsort(y))[:n]
+
+
+import networkx as nx
+
+def in_degree_centrality(graph):
+    """
+    Calculates the (incoming) degree centrality (fraction of nodes a node is connected to)
+    for each node in the graph.
+    """
+    return nx.centrality.in_degree_centrality(graph)
+
+def shortest_path(node_A, node_B, graph):
+    """
+    Returns the shortest path between two nodes.
+    """
+    return nx.shortest_paths.shortest_path(graph, node_A, node_B)

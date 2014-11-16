@@ -1,5 +1,6 @@
 import sys
 import json
+from networkx.readwrite import json_graph
 
 # So we can import tools from the app.
 # I'd like to find a better way eventually.
@@ -16,12 +17,21 @@ def p(x):
 with open('$datapath', 'r') as f:
     TWEETS = json.load(f)
 
+with open('$graphpath', 'r') as f:
+    json_g = json.load(f)
+    GRAPH  = json_graph.node_link_graph(json_g)
+
 
 # Returns tweets matching a list of indices.
 def tweets_by_indices(indices):
     for idx in indices:
         yield TWEETS[idx]
 
+
+# "Follow" a user in the social graph.
+def follow(user):
+    if user in GRAPH.nodes():
+        GRAPH.add_edge('ME', user)
 
 
 # Default filtering method.
