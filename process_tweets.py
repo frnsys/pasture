@@ -32,6 +32,8 @@ print('Generating fake usernames...')
 users = {}
 tweets_by_users = {}
 for tweet in tweets:
+    # Convert to strings, having some issues with ints.
+    tweet['id'] = str(tweet['id'])
     if tweet['user'] not in users:
         rand_name = random_name()
         users[tweet['user']] = rand_name
