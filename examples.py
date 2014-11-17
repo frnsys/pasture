@@ -54,8 +54,8 @@ def filter(tweets):
 
 # Rank by influence (in degree centrality, i.e. num of mentions).
 def filter(tweets):
-    # TO DO
-    print(tools.indegree_centrality(GRAPH))
+    ranked_users = tools.in_degree_centrality(GRAPH)
+    return sorted(tweets, key=lambda t: ranked_users.get(t['user'], 0), reverse=True)
 
 # Rank by influence (number of followers)
 def filter(tweets):
@@ -63,7 +63,7 @@ def filter(tweets):
 
 # Rank by influence (number of followers over following)
 def filter(tweets):
-    return sorted(tweets, key=lambda t: t['user_follower_count']/t['user_following_count'], reverse=True)
+    return sorted(tweets, key=lambda t: t['user_follower_count']/(t['user_following_count'] + 1), reverse=True)
 
 # Rank by smaller voices (less frequent tweets)
 def filter(tweets):
