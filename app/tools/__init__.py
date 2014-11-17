@@ -31,33 +31,46 @@ def sentiment(text):
 
 
 import numpy as np
-from scipy.spatial.distance import cdist
+from scipy.spatial.distance import cdist, pdist, squareform
 
-def similar(in_vecs, vecs, threshold=1.1):
+def similar(in_vecs, vecs, threshold=1.1, metric='euclidean'):
     """
     Returns the indices of all distances below the specified threshold.
     Each row in the returned array is the indices for the corresponding row in in_vecs.
     """
-    sim_mat = cdist(in_vec.todense(), vecs.todense())
+    sim_mat = cdist(in_vec.todense(), vecs.todense(), metric=metric)
     most_sim = np.where(np.any(sim_mat<threshold), axis=0)
     return most_sim
 
-def most_similar(in_vecs, vecs, n=5):
+def most_similar(in_vecs, vecs, n=5, metric='euclidean'):
     """
     Returns the top n most similar indices.
     Each row in the returned array is the indices for the corresponding row in in_vecs.
     """
-    sim_mat = cdist(in_vecs.todense(), vecs.todense())
-    return np.argsort(y)[:n]
+    sim_mat = cdist(in_vec.todense(), vecs.todense(), metric=metric)
+    return np.argsort(sim_mat).flatten()[:n]
 
-def dissimilar(in_vecs, vecs, threshold=1.1):
-    sim_mat = cdist(in_vec.todense(), vecs.todense())
+def dissimilar(in_vecs, vecs, threshold=1.1, metric='euclidean'):
+    sim_mat = cdist(in_vec.todense(), vecs.todense(), metric=metric)
     most_sim = np.where(np.any(sim_mat>threshold), axis=0)
     return most_sim
 
-def least_similar(in_vecs, vecs, n=5):
-    sim_mat = cdist(in_vecs.todense(), vecs.todense())
-    return np.fliplr(np.argsort(y))[:n]
+def least_similar(in_vecs, vecs, n=5, metric='euclidean'):
+    sim_mat = cdist(in_vecs.todense(), vecs.todense(), metric=metric)
+    return np.fliplr(np.argsort(sim_mat).flatten())[:n]
+
+def most_salient(vecs, n=5, metric='euclidean'):
+    """
+    The most salient indices, that is, those that are most dissimilar from the bunch.
+    """
+    sim_mat = squareform(pdist(vecs, metric=metric))
+    means = np.mean(sim_mat, axis=1)
+    return np.argsort(means)[:n]
+
+def most_representative(vecs, n=5, metric='euclidean'):
+    sim_mat = squareform(pdist(vecs, metric=metric))
+    means = np.mean(sim_mat, axis=1)
+    return np.argsort(means)[::-1][:n]
 
 
 import networkx as nx

@@ -22,14 +22,29 @@ with open('$graphpath', 'r') as f:
     GRAPH  = json_graph.node_link_graph(json_g)
 
 
+all_texts = [t['text'] for t in TWEETS]
+model = tools.train_model(all_texts)
+all_vecs = model.transform(all_texts)
+
 # Returns tweets matching a list of indices.
 def tweets_by_indices(indices):
-    for idx in indices:
-        yield TWEETS[idx]
+    return [TWEETS[idx] for idx in indices]
+
+# Returns tweets matching a list of ids.
+# Brute search, not efficient, just a quick solution.
+def tweets_by_ids(ids):
+    ts = []
+    for id in ids:
+        for t in TWEETS:
+            if t['id'] == str(id):
+                ts.append(t)
+    return ts
 
 
 # "Follow" a user in the social graph.
 def follow(user):
+    if user[0] == '@':
+        user = user[1:]
     if user in GRAPH.nodes():
         GRAPH.add_edge('ME', user)
 
