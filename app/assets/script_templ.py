@@ -40,6 +40,14 @@ def tweets_by_ids(ids):
                 ts.append(t)
     return ts
 
+# Returns tweets matching a list of ids.
+# Brute search, not efficient, just a quick solution.
+def tweets_by_ids(ids):
+    for id in ids:
+        for t in TWEETS:
+            if t['id'] == id:
+                yield t
+
 
 # "Follow" a user in the social graph.
 def follow(user):

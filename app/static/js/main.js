@@ -25,7 +25,7 @@ require(['config'], function() {
             // Running...
             $('button[type=submit]').prop('disabled', true).addClass('running').text('Running...');
             $.ajax({
-                url: '/eval'+location.pathname,
+                url: '/eval/'+id,
                 type: 'POST',
                 data: {
                     script: script
