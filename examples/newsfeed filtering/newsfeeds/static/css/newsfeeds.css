@@ -1,0 +1,12 @@
+.feed {
+  padding: 2em; }
+
+.feed h6 {
+  background: #178afb;
+  padding: 1em;
+  color: white; }
+
+.tweet {
+  margin: 2em 0;
+  border: 1px solid #dadada;
+  padding: 2em 1em; }

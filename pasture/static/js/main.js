@@ -42,7 +42,12 @@ require(['config'], function() {
                     }
 
                 }, error: function(xhr, status, err) {
-                    alert(xhr.status.toString() + ' : ' + xhr.responseText);
+                    var overlay = $('.overlay');
+                    overlay.show().on('click', function() {
+                        overlay.hide();
+                        overlay.off('click');
+                    });
+                    $('.overlay .popup').html(xhr.responseText);
                 }
             });
 

@@ -1,9 +1,8 @@
-import sys
+import imp
 
 # So we can import tools from the app.
 # I'd like to find a better way eventually.
-sys.path.append('$toolkit_path')
-import toolkit
+toolkit = imp.load_source('toolkit', '$toolkit_path')
 
 # A print method that handles encoding.
 def print_(x):

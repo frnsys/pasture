@@ -1,4 +1,4 @@
-require(['config'], function() {
+require(['/js/config.js'], function() {
     'use strict';
 
     require([
@@ -33,7 +33,7 @@ require(['config'], function() {
 
         var container = svg.append('g').call(drag);
 
-        d3.json('/socialgraph.json', function(error, graph) {
+        d3.json('/newsfeeds/socialgraph.json', function(error, graph) {
             force
                 .nodes(graph.nodes)
                 .links(graph.links)

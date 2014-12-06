@@ -1,7 +1,6 @@
 .DS_Store
 *.pyc
 .gitkeep
-index.css
 *.swp
 pasture/static/js/vendor/bower/**/*
 config.json
@@ -13,3 +12,4 @@ db/
 config.py
 app/assets/**/*.json
 *.map
+*.egg-info

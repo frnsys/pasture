@@ -40,12 +40,8 @@ textarea
     width: 100%
     resize: none
 
-.results, .feed
+.results
     padding: 2em
-.feed h6
-    background: #178AFB
-    padding: 1em
-    color: #fff
 
 h6
     font-weight: normal
@@ -58,10 +54,6 @@ h6
     .data
         color: #FC0D1B
 
-.tweet
-    margin: 2em 0
-    border: 1px solid #dadada
-    padding: 2em 1em
 .meta
     color: #bbb
     float: right
@@ -73,13 +65,18 @@ h6
     left: 0
     right: 0
     bottom: 0
+    overflow-y: scroll
     background: rgba(255,255,255,0.75)
     h6
         text-align: center
         color: $secondary-color
-        position: relative
+        position: absolute
+        width: 100%
         top: 50%
         transform: translateY(-50%)
+    .popup
+        max-width: 640px
+        margin: 2em auto
 
 @-webkit-keyframes executing
     0%

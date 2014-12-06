@@ -6,15 +6,16 @@ You can run this periodically and it will update the data file.
 import os
 import json
 import tweepy
-import config
+
+TWITTER_CONSUMER_KEY    = 'fill me in'
+TWITTER_CONSUMER_SECRET = 'fill me in'
 
 def _api():
     """
-    Load auth info from config.
     Setup things on Twitter's end at:
     https://apps.twitter.com/
     """
-    auth = tweepy.OAuthHandler(config.TWITTER_CONSUMER_KEY, config.TWITTER_CONSUMER_SECRET)
+    auth = tweepy.OAuthHandler(TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET)
     return tweepy.API(auth)
 
 api = _api()

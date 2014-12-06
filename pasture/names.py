@@ -1,11 +1,16 @@
 # Name generator, like the one gfycat uses :)
 
+import os
 import random
 
-with open('app/assets/adjectives.txt', 'r') as f:
+dir = os.path.dirname(os.path.realpath(__file__))
+
+adj_path = os.path.join(dir, 'assets/adjectives.txt')
+with open(adj_path, 'r') as f:
     adjectives = [l.strip() for l in f.readlines()]
 
-with open('app/assets/animals.txt', 'r') as f:
+ani_path = os.path.join(dir, 'assets/animals.txt')
+with open(ani_path, 'r') as f:
     animals = [l.strip() for l in f.readlines()]
 
 def random_name():

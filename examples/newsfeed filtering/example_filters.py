@@ -28,17 +28,17 @@ def filter(tweets):
     favorites = [t for t in tweets_by_ids(fav_ids)]
     fav_vecs = model.transform([t['text'] for t in favorites])
 
-    top_similar_indices = tools.most_similar(fav_vecs, all_vecs, n=20)
+    top_similar_indices = toolkit.most_similar(fav_vecs, all_vecs, n=20)
     return [t for t in tweets_by_indices(top_similar_indices) if t not in favorites]
 
 # Rank by salience (most dissimilar from all tweets).
 def filter(tweets):
-    indices = tools.most_salient(all_vecs, n=20)
+    indices = toolkit.most_salient(all_vecs, n=20)
     return tweets_by_indices(indices)
 
 # Rank by representativeness(most similar to all tweets).
 def filter(tweets):
-    indices = tools.most_representative(all_vecs, n=20)
+    indices = toolkit.most_representative(all_vecs, n=20)
     return tweets_by_indices(indices)
 
 # Rank by your degrees of separation (shorter = better).
@@ -47,14 +47,14 @@ def filter(tweets):
     follow('DefiniteKoreanElephant')
     follow('NiceExperimentalPeafowl')
 
-    return sorted(tweets, key=lambda t: tools.shortest_path('ME', t['user'], GRAPH))
+    return sorted(tweets, key=lambda t: toolkit.shortest_path('ME', t['user'], GRAPH))
 
 # Rank by degrees of separation with people you fav.
 # Not implemented.
 
 # Rank by influence (in degree centrality, i.e. num of mentions).
 def filter(tweets):
-    ranked_users = tools.in_degree_centrality(GRAPH)
+    ranked_users = toolkit.in_degree_centrality(GRAPH)
     return sorted(tweets, key=lambda t: ranked_users.get(t['user'], 0), reverse=True)
 
 # Rank by influence (number of followers)

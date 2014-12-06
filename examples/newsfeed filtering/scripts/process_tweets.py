@@ -7,6 +7,7 @@ Anonymizes data and constructs a social graph out of Twitter data.
 import re
 import json
 import random
+from datetime import datetime
 
 # For visualization.
 import matplotlib.pyplot as plt
@@ -14,7 +15,7 @@ import networkx as nx
 import subprocess as sp
 from networkx.readwrite import json_graph
 
-from app.names import random_name
+from pasture.names import random_name
 
 # Load data.
 print('Loading data...')
@@ -32,8 +33,8 @@ print('Generating fake usernames...')
 users = {}
 tweets_by_users = {}
 for tweet in tweets:
-    # Convert to strings, having some issues with ints.
-    tweet['id'] = str(tweet['id'])
+    # Generate new ids.
+    tweet['id'] = str(hash(datetime.utcnow()))[1:]
     if tweet['user'] not in users:
         rand_name = random_name()
         users[tweet['user']] = rand_name
