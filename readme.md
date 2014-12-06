@@ -1,6 +1,7 @@
 ## Pasture
 
 ![Pasture](pasture.jpg)
+
 [Source](https://commons.wikimedia.org/wiki/File:PolledHereford_bull.jpg), modified and licensed under [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en).
 
 When teaching Python to students, I've found the hardest part is all the setup involved. Some students have different computers, depending on the class, many might have never programmed before and don't have any dev environment at all. Walking everyone through preparing their systems takes _forever_.
