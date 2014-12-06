@@ -18,8 +18,4 @@ setup(
         'jinja2',
         'gunicorn'
     ],
-    entry_points='''
-        [console_scripts]
-        pasturize=pasture:pasturize
-    ''',
 )

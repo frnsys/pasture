@@ -11,5 +11,6 @@ log.log
 db/
 config.py
 app/assets/**/*.json
+dist/
 *.map
 *.egg-info
