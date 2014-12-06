@@ -1,0 +1,112 @@
+/* ==========================================
+     Config
+     ========================================== */
+$primary-color: #111
+$secondary-color: #8765FB
+$background-color: #fafafa
+$primary-type: Verdana, Geneva, sans-serif
+$selection-background: #22D689
+
+@import url(http://fonts.googleapis.com/css?family=Inconsolata)
+
+@import "core/core"
+
+/* ==========================================
+     Your Styles
+     ========================================== */
+
+html
+    background: $background-color
+    font-family: 'Inconsolata', monospace
+    color: #111
+
+a, a:visited
+    color: $secondary-color
+
+button
+    @include transition
+    border: none
+    padding: 1em
+    color: #fff
+    background: darken($background-color, 16%)
+    width: 100%
+    &:hover
+        background: #22D689
+
+textarea
+    border: none
+    min-height: 20em
+    padding: 2em
+    width: 100%
+    resize: none
+
+.results
+    padding: 2em
+
+h6
+    font-weight: normal
+    margin: 0
+    color: #666
+
+.errors
+    margin: 2em 0 0 0
+    display: none
+    .data
+        color: #FC0D1B
+
+.meta
+    color: #bbb
+    float: right
+
+.overlay
+    display: none
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    overflow-y: scroll
+    background: rgba(255,255,255,0.75)
+    h6
+        text-align: center
+        color: $secondary-color
+        position: absolute
+        width: 100%
+        top: 50%
+        transform: translateY(-50%)
+    .popup
+        max-width: 640px
+        margin: 2em auto
+
+@-webkit-keyframes executing
+    0%
+        background: darken($background-color, 16%)
+    100%
+        background: $secondary-color
+
+@keyframes executing
+    0%
+        background: darken($background-color, 16%)
+    100%
+        background: $secondary-color
+
+.running
+    -webkit-animation: executing 0.8s ease 0s infinite alternate
+    animation: executing 0.8s ease 0s infinite alternate
+
+
+@-webkit-keyframes loading
+    0%
+        color: #ccc
+    100%
+        color: $secondary-color
+
+@keyframes loading
+    0%
+        color: #ccc
+    100%
+        color: $secondary-color
+
+.loading
+    -webkit-animation: loading 0.8s ease 0s infinite alternate
+    animation: loading 0.8s ease 0s infinite alternate

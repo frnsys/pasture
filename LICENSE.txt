@@ -1,4 +1,4 @@
-News Automata Filter Algorithm Lesson
+Pasture - simple, setup-free, web-based Python
 Copyright (C) 2014 Francis Tseng
 
 This program is free software: you can redistribute it and/or modify
