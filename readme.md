@@ -1,20 +1,6 @@
-## Visualization setup
-To get the visualization output from `process_tweets.py` working, you have to do a lot
-of work (these instructions are for OSX 10.9):
+## Pasture
 
-    brew install qt
-    brew install graphviz
-    pip install -U pyside
-    pip install pygraphviz
-    git clone https://github.com/PySide/pyside-setup.git
-    cd pyside-setup
-    pyside_postinstall.py -install
+When teaching Python to students, I've found the hardest part is all the setup involved. Some students have different computers, depending on the class, many might have never programmed before and don't have any dev environment at all. Walking everyone through preparing their systems takes _forever_.
 
-For Ubuntu:
+__Pasture__ simplifies this - all you need to do is install it on one machine and then setup that machine's dev environment. It runs a web server which allows students to write Python scripts and have them evaluated by the remote environment - stdout and errors are communicated back to them.
 
-    sudo apt-get install graphviz libgraphviz-dev
-    sudo apt-get build-dep python-matplotlib
-    pip install matplotlib
-    sudo apt-get install cmake qt-sdk
-    pip install -U pyside
-    pip install pygraphviz

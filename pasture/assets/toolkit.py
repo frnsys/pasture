@@ -3,7 +3,6 @@ These are methods which are exposed to the script executed for the user.
 Most of these are simplifications or convenience methods.
 """
 
-
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 def train_model(docs):

@@ -4,7 +4,7 @@ def sanitize(script):
     """
     This isn't comprehensive enough but fine for now ~
     """
-    for mod in ['subprocess', 'os', 'pickle']:
+    for mod in ['subprocess', 'os', 'pickle', 'shutil']:
         script = re.sub(r'\n?.*(import|from) {0}.*'.format(mod), '', script)
 
     return script

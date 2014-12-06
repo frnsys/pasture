@@ -3,7 +3,7 @@
 .gitkeep
 index.css
 *.swp
-app/static/js/vendor/bower/**/*
+pasture/static/js/vendor/bower/**/*
 config.json
 .sass-cache/
 node_modules/

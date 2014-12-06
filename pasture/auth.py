@@ -1,6 +1,6 @@
 from flask import request, Response
 from functools import wraps
-from app import app
+from . import app
 
 def check_auth(username, password):
     """
