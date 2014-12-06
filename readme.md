@@ -12,42 +12,44 @@ Pasture does not support Python 3 at the moment since `gevent` does not yet supp
 
 ### Example usage
 
-    from pasture import Pasture
+```python
+from pasture import Pasture
 
-    # Configuration options
-    options = {
-        # A config dict which is passed to the underlying Flask application.
-        'config':               {'DEBUG': True},
+# Configuration options
+options = {
+    # A config dict which is passed to the underlying Flask application.
+    'config':               {'DEBUG': True},
 
-        # Other Flask blueprints to include additional routes
-        'blueprints':           [some_blueprint],
+    # Other Flask blueprints to include additional routes
+    'blueprints':           [some_blueprint],
 
-        # A function called before a submitted script is evaluated.
-        'pre_eval_func':        pre_eval_func,
+    # A function called before a submitted script is evaluated.
+    'pre_eval_func':        pre_eval_func,
 
-        # A function called after a submitted script is evaluated.
-        'post_eval_func':       post_eval_func,
+    # A function called after a submitted script is evaluated.
+    'post_eval_func':       post_eval_func,
 
-        # The path to your script template, where the user code is embedded.
-        'script_template_path': os.path.join(dir, 'assets/script_templ.py'),
+    # The path to your script template, where the user code is embedded.
+    'script_template_path': os.path.join(dir, 'assets/script_templ.py'),
 
-        # The path to a module which includes additional convenience functions
-        # which may be dependent on other packages.
-        'toolkit_path':         os.path.join(dir, 'assets/toolkit.py'),
+    # The path to a module which includes additional convenience functions
+    # which may be dependent on other packages.
+    'toolkit_path':         os.path.join(dir, 'assets/toolkit.py'),
 
-        # Authentication information.
-        'auth_user':            'student',
-        'auth_pass':            'super-secret-password',
+    # Authentication information.
+    'auth_user':            'student',
+    'auth_pass':            'super-secret-password',
 
-        # Path to the virtualenv you are using.
-        # This is so that the scripts are executed with the proper Python binary.
-        'venv_path':            '~/env/pasture_newsfeeds'
-    }
+    # Path to the virtualenv you are using.
+    # This is so that the scripts are executed with the proper Python binary.
+    'venv_path':            '~/env/pasture_newsfeeds'
+}
 
-    pasture = Pasture(**options)
-    pasture.run(port=5001)
+pasture = Pasture(**options)
+pasture.run(port=5001)
+```
 
-For a more complete example, check out [`examples/newsfeed filtering/`](`examples/newsfeed filtering/`).
+For a more complete example, check out [`examples/newsfeed filtering/`](examples/newsfeed_filtering/).
 
 ### Security
 

@@ -27,6 +27,6 @@ You should be redirected to your own coding session.
 You can open the newsfeed paired with this session by opening another tab at `http://localhost:5001/feed/<your session id>`,
 where `<your session id>` is whatever random animal you were assigned. For example, `SemanticEstablishedSardine`.
 
-To filter your newsfeed, you just need to define a function with the signature `filter(tweets)`. This should return a list of tweet dictionaries. For examples, see [`example_filters.py`](`examples/newsfeed filtering/example_filters.py`). You can just copy and paste any of those functions into the interpreter and hit "Run" to see your newsfeed updated.
+To filter your newsfeed, you just need to define a function with the signature `filter(tweets)`. This should return a list of tweet dictionaries. For examples, see [`example_filters.py`](example_filters.py). You can just copy and paste any of those functions into the interpreter and hit "Run" to see your newsfeed updated.
 
 If you get stuck, you can run `print(HELP)` in the interpreter to get some extra info.
