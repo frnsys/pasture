@@ -94,6 +94,38 @@ function inusers {
     sudo docker exec pasture ps ax | grep jupyter | grep -oP '(?<=--user=)([^\s]+)'
 }
 
+function unusers {
+    # List unclaimed users
+    # (users not logged into jupyterhub)
+    grep -vf <(inusers) <(lsusers)
+}
+
+function mnusers {
+    clear
+    echo "Unclaimed users"
+    echo "---------------"
+
+    # save cursor position
+    tput sc
+    while true; do
+        # show unclaimed users
+        unusers | while read line; do
+            echo -n $line
+            # clear to end of line
+            # (necessary if previously displayed line is longer than current line)
+            tput el
+            echo
+        done
+
+        # clear to end of display
+        tput ed
+
+        # restore cursor
+        tput rc
+        sleep 1
+    done
+}
+
 
 # CMDS
 # ============================================
@@ -120,31 +152,9 @@ elif [ $1 == 'lsusers' ]; then
     elif [ $2 == '-s' ]; then
         inusers
     elif [ $2 == '-u' ]; then
-        grep -vf <(inusers) <(lsusers)
+        unusers
     elif [ $2 == '-m' ]; then
-        clear
-        echo "Unclaimed users"
-        echo "---------------"
-
-        # save cursor position
-        tput sc
-        while true; do
-            # show unclaimed users
-            grep -vf <(inusers) <(lsusers) | while read line; do
-                echo -n $line
-                # clear to end of line
-                # (necessary if previously displayed line is longer than current line)
-                tput el
-                echo
-            done
-
-            # clear to end of display
-            tput ed
-
-            # restore cursor
-            tput rc
-            sleep 1
-        done
+        mnusers
     fi
 
 else

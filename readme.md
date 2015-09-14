@@ -12,19 +12,44 @@ Pasture used to be a custom-built solution but with the excellent `jupyterhub` a
 
 ## Usage
 
-Clone this repo to your host machine. Then you can run the `pasture` script:
+Clone this repo to your host machine.
 
-- Setup your host system: `./pasture setup`
-- Build your image: `./pasture build`
-- Run the container (and run `jupyterhub` inside it): `./pasture run`
-- Remove the container: `./pasture clean`
-- Launch a shell in the container: `./pasture shell`
-- Create more users: `./pasture mkusers <number of users>`
-    - usernames are randomly-generated, passwords are same as the usernames; these are used as logins into `jupyterhub`)
-- List all users: `./pasture lsusers`
-    - List users with active `jupyter` servers: `./pasture lsusers -s`
-    - List unclaimed users (users not running `jupyter` servers): `./pasture lsusers -u`
-    - Live updating list of unclaimed users: `./pasture lsusers -m`
+Then you can run the `pasture` script from within the repo.
+
+If you don't have Docker installed, run `./pasture setup` first.
+
+```
+./pasture <command>
+
+Available commands:
+- setup      - setup your host system
+- build      - build your image
+- run        - start the container and run jupyterhub inside it
+- clean      - stop and remove the container
+- shell      - launch a shell in the container
+- mkusers #  - create # users (usernames are randomly-generated; password is the username, used as logins for jupyterhub)
+- lsusers    - list all users. also accepts additional flags:
+    - -s     - list users with active jupyter servers
+    - -u     - list unclalimed users (users not running jupyter servers)
+    - -m     - realtime list of unclaimed users
+```
+
+### Example usage
+
+```
+# build your image
+./pasture build
+
+# run the container
+./pasture run
+
+# make users for folks to login is
+./pasture mkusers 10
+
+# display a realtime list of unclaimed users
+# make it big, throw up on a projector for others to see
+./pasture lsusers -m
+```
 
 ## Customization
 
