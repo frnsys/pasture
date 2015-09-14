@@ -21,6 +21,17 @@ function clean {
     sudo docker rm pasture
 }
 
+function host {
+    # setup nginx conf and restart nginx
+    if [ -z $1 ]; then
+        echo "Please specify the hostname, e.g. my.server.com"
+    else
+        cat assets/example_nginx.conf | sed "s/my.server.com/$1/" | sudo tee -a /etc/nginx/conf.d/${1}.conf
+        sudo service nginx restart
+        echo "nginx conf saved to /etc/nginx/conf.d/${1}.conf"
+    fi
+}
+
 function setup {
     # setup the host system
     curl -sSL https://get.docker.com/ | sh
@@ -133,6 +144,8 @@ then
 
 elif [ $1 == 'setup' ]; then
     setup
+elif [ $1 == 'host' ]; then
+    host $2
 elif [ $1 == 'run' ]; then
     run
 elif [ $1 == 'clean' ]; then

@@ -23,6 +23,7 @@ If you don't have Docker installed, run `./pasture setup` first.
 
 Available commands:
 - setup      - setup your host system
+- host       - setup nginx conf
 - build      - build your image
 - run        - start the container and run jupyterhub inside it
 - clean      - stop and remove the container
@@ -45,13 +46,7 @@ Available commands:
 ./pasture run
 
 # setup nginx conf
-sudo cp assets/example_nginx.conf /etc/nginx/conf.d/my.server.com.conf
-
-# edit nginx conf if needed
-sudo vi /etc/nginx/conf.d/my.server.com.conf
-
-# restart nginx
-sudo service nginx restart
+./pasture host some.site.com
 
 # make users for folks to login as
 ./pasture mkusers 10
