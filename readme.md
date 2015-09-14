@@ -62,8 +62,6 @@ If you have data or other assets you want available to students, place them in `
 
 ## Details
 
-This is setup to run `jupyterhub` without `sudo` for greater security (though the Docker container helps with security). Additional users created by `jupyterhub` are unprivileged.
+This is setup to run `jupyterhub` without `sudo` for greater security (though the Docker container helps with security). Additional users created are unprivileged.
 
-The main user is `pasture` with the password you specify with the `build` command; this username/password combo is also used to log into `jupyterhub`.
-
-
+The main user is `pasture` with the password you specify with the `build` command; this username/password combo is also used to log into `jupyterhub` as the admin.
