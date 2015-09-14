@@ -54,6 +54,8 @@ Available commands:
 # display a realtime list of unclaimed users
 # make it big, throw up on a projector for others to see
 ./pasture lsusers -m
+
+# have people go to some.site.com and login as one of the users
 ```
 
 ## Customization
