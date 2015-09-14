@@ -89,6 +89,11 @@ function lsusers {
     sudo docker exec pasture cat /etc/passwd | grep '/home/' | grep 'bash' | cut -d: -f1
 }
 
+function inusers {
+    # List users logged into jupyterhub
+    sudo docker exec pasture ps ax | grep jupyter | grep -oP '(?<=--user=)([^\s]+)'
+}
+
 
 # CMDS
 # ============================================
@@ -110,7 +115,37 @@ elif [ $1 == 'shell' ]; then
 elif [ $1 == 'mkusers' ]; then
     mkusers $2
 elif [ $1 == 'lsusers' ]; then
-    lsusers
+    if [ -z $2 ]; then
+        lsusers
+    elif [ $2 == '-s' ]; then
+        inusers
+    elif [ $2 == '-u' ]; then
+        grep -vf <(inusers) <(lsusers)
+    elif [ $2 == '-m' ]; then
+        clear
+        echo "Unclaimed users"
+        echo "---------------"
+
+        # save cursor position
+        tput sc
+        while true; do
+            # show unclaimed users
+            grep -vf <(inusers) <(lsusers) | while read line; do
+                echo -n $line
+                # clear to end of line
+                # (necessary if previously displayed line is longer than current line)
+                tput el
+                echo
+            done
+
+            # clear to end of display
+            tput ed
+
+            # restore cursor
+            tput rc
+            sleep 1
+        done
+    fi
 
 else
     echo "Didn't recognize the command '${1}'"

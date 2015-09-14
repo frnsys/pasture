@@ -21,7 +21,10 @@ Clone this repo to your host machine. Then you can run the `pasture` script:
 - Launch a shell in the container: `./pasture shell`
 - Create more users: `./pasture mkusers <number of users>`
     - usernames are randomly-generated, passwords are same as the usernames; these are used as logins into `jupyterhub`)
-- List current users: `./pasture lsusers`
+- List all users: `./pasture lsusers`
+    - List users with active `jupyter` servers: `./pasture lsusers -s`
+    - List unclaimed users (users not running `jupyter` servers): `./pasture lsusers -u`
+    - Live updating list of unclaimed users: `./pasture lsusers -m`
 
 ## Customization
 
