@@ -27,7 +27,8 @@ Available commands:
 - run        - start the container and run jupyterhub inside it
 - clean      - stop and remove the container
 - shell      - launch a shell in the container
-- mkusers #  - create # users (usernames are randomly-generated; password is the username, used as logins for jupyterhub)
+- mkusers #  - create # users (usernames are randomly-generated;
+               password is the username, used as logins for jupyterhub)
 - lsusers    - list all users. also accepts additional flags:
     - -s     - list users with active jupyter servers
     - -u     - list unclalimed users (users not running jupyter servers)
