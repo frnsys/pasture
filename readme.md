@@ -44,6 +44,15 @@ Available commands:
 # run the container
 ./pasture run
 
+# setup nginx conf
+sudo cp assets/example_nginx.conf /etc/nginx/conf.d/my.server.com.conf
+
+# edit nginx conf if needed
+sudo vi /etc/nginx/conf.d/my.server.com.conf
+
+# restart nginx
+sudo service nginx restart
+
 # make users for folks to login as
 ./pasture mkusers 10
 
