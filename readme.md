@@ -44,7 +44,7 @@ Available commands:
 # run the container
 ./pasture run
 
-# make users for folks to login is
+# make users for folks to login as
 ./pasture mkusers 10
 
 # display a realtime list of unclaimed users
