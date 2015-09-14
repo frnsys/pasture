@@ -1,0 +1,3 @@
+#!/bin/bash
+USER=$1
+useradd -ms /bin/bash -p $(openssl passwd -1 $USER) $USER

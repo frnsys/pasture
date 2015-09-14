@@ -75,7 +75,7 @@ function mkusers {
 
             # create user with defaults,
             # password is just the username
-            sudo docker exec -u root pasture bash -c "useradd -ms /bin/bash -p $(openssl passwd -1 password) $USER"
+            sudo docker exec -u root pasture mkuser $USER
             echo $USER
 
             i=$(($i + 1))
