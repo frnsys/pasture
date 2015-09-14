@@ -18,6 +18,10 @@ Clone this repo to your host machine. Then you can run the `pasture` script:
 - Build your image: `./pasture build`
 - Run the container (and run `jupyterhub` inside it): `./pasture run`
 - Remove the container: `./pasture clean`
+- Launch a shell in the container: `./pasture shell`
+- Create more users: `./pasture mkusers <number of users>`
+    - usernames are randomly-generated, passwords are same as the usernames; these are used as logins into `jupyterhub`)
+- List current users: `./pasture lsusers`
 
 ## Customization
 
