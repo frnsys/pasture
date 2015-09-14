@@ -59,9 +59,7 @@ function random_name {
     # - combine adjs and animal
     # - convert to lowercase
     # - convert spaces to underscores
-    USER=$(echo "${ADJ1}_${ADJ2}_${ANIM}" | tr '[:upper:]' '[:lower:]' | sed 's/\s/_/g')
-
-    echo $USER
+    echo "${ADJ1}_${ADJ2}_${ANIM}" | tr '[:upper:]' '[:lower:]' | sed 's/\s/_/g'
 }
 
 function mkusers {
