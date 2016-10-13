@@ -2,70 +2,11 @@
 
 # FUNCS
 # ============================================
-function run {
-    # Run the image
-    # map host port 8000 to container port 8000
-    # -it -> run interative w/ tty to keep live
-    # -d -> run in the background
-    sudo docker run --name pasture -it -d -p 8000:8000 pasture:latest
-}
-
-function shell {
-    # access a shell in the container
-    sudo docker exec -it pasture bash
-}
-
-function clean {
-    # remove the container
-    sudo docker stop pasture
-    sudo docker rm pasture
-}
-
-function host {
-    # setup nginx conf and restart nginx
-    if [ -z $1 ]; then
-        echo "Please specify the hostname, e.g. my.server.com"
-    else
-        cat assets/example_nginx.conf | sed "s/my.server.com/$1/" | sudo tee -a /etc/nginx/conf.d/${1}.conf
-        sudo service nginx restart
-        echo "nginx conf saved to /etc/nginx/conf.d/${1}.conf"
-    fi
-}
-
-function setup {
-    # setup the host system
-    curl -sSL https://get.docker.com/ | sh
-    sudo docker pull ubuntu:14.04
-}
-
-function build {
-    # Build the image
-    # allow user to specify password for `pasture` user
-    echo "Specify a password for the main user (pasture):"
-    while true
-    do
-        read -s -p "Password: " password
-        echo
-        read -s -p "Confirm password: " password_confirm
-        echo
-        [ "$password" = "$password_confirm" ] && break
-        echo "Passwords did not match - please try again~"
-    done
-
-    # add in user-specified password,
-    # then build the image
-    mkdir -p /tmp/pasture
-    cat assets/Dockerfile | sed "s/pasturepw/${password}/" > /tmp/pasture/Dockerfile
-    cp -aT assets /tmp/pasture/assets
-    sudo docker build -t pasture:latest /tmp/pasture
-}
-
-
 function random_name {
     # Generate a random username
-    ADJ1=$(shuf -n 1 assets/users/adjectives.txt)
-    ADJ2=$(shuf -n 1 assets/users/adjectives.txt)
-    ANIM=$(shuf -n 1 assets/users/animals.txt)
+    ADJ1=$(shuf -n 1 assets/adjectives.txt)
+    ADJ2=$(shuf -n 1 assets/adjectives.txt)
+    ANIM=$(shuf -n 1 assets/animals.txt)
 
     # - combine adjs and animal
     # - convert to lowercase
@@ -84,7 +25,7 @@ function mkusers {
 
             # create user with defaults,
             # password is just the username
-            sudo docker exec -u root pasture mkuser $USER
+            useradd -ms /bin/bash -p $(openssl passwd -1 $USER) $USER
             echo $USER
 
             i=$(($i + 1))
@@ -95,12 +36,12 @@ function mkusers {
 function lsusers {
     # List existing users
     # this roughly tries to list only "real" users
-    sudo docker exec pasture cat /etc/passwd | grep '/home/' | grep 'bash' | cut -d: -f1
+    cat /etc/passwd | grep '/home/' | grep 'bash' | cut -d: -f1
 }
 
 function inusers {
     # List users logged into jupyterhub
-    sudo docker exec pasture ps ax | grep jupyter | grep -oP '(?<=--user=)([^\s]+)'
+    ps ax | grep jupyter | grep -oP '(?<=--user=)([^\s]+)'
 }
 
 function unusers {
@@ -141,19 +82,6 @@ function mnusers {
 if [ -z $1 ]
 then
     echo -e "$(tput setaf 3)Tell me what to do...$(tput sgr0)"
-
-elif [ $1 == 'setup' ]; then
-    setup
-elif [ $1 == 'host' ]; then
-    host $2
-elif [ $1 == 'run' ]; then
-    run
-elif [ $1 == 'clean' ]; then
-    clean
-elif [ $1 == 'build' ]; then
-    build
-elif [ $1 == 'shell' ]; then
-    shell
 
 elif [ $1 == 'mkusers' ]; then
     mkusers $2
