@@ -26,10 +26,21 @@ function mkusers {
             # create user with defaults,
             # password is just the username
             useradd -ms /bin/bash -p $(openssl passwd -1 $USER) $USER
+            echo $USER >> pasture_users
             echo $USER
 
             i=$(($i + 1))
         done
+    fi
+}
+
+function rmusers {
+    if [ -f "pasture_users" ]; then
+        while read USER; do
+            userdel -r $USER
+        done <pasture_users
+    else
+        echo "file 'pasture_users' doesn't exist"
     fi
 }
 
@@ -85,6 +96,8 @@ then
 
 elif [ $1 == 'mkusers' ]; then
     mkusers $2
+elif [ $1 == 'rmusers' ]; then
+    rmusers
 elif [ $1 == 'lsusers' ]; then
     if [ -z $2 ]; then
         lsusers

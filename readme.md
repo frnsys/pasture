@@ -20,6 +20,7 @@ Then you can run the `pasture` script from within the repo.
 Available commands:
 - mkusers #  - create # users (usernames are randomly-generated;
                password is the username, used as logins for jupyterhub)
+- rmusers    - remove users created by pasture
 - lsusers    - list all users. also accepts additional flags:
     - -s     - list users with active jupyter servers
     - -u     - list unclalimed users (users not running jupyter servers)
@@ -37,4 +38,7 @@ Available commands:
 ./pasture lsusers -m
 
 # have people go to some.site.com and login as one of the users
+
+# clean up created users
+./pasture rmusers
 ```
