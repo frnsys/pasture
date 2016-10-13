@@ -39,6 +39,7 @@ function rmusers {
         while read USER; do
             userdel -r $USER
         done <pasture_users
+        rm pasture_users
     else
         echo "file 'pasture_users' doesn't exist"
     fi
