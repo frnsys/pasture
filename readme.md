@@ -8,6 +8,10 @@ When teaching Python to students, I've found the hardest part is all the setup i
 
 This project has mostly been superseded by newer versions of [`jupyterhub`](https://github.com/jupyter/jupyterhub). Now it just manages system users for use with `jupyterhub`.
 
+A `jupyterhub` config (`jupyterhub_config.py`) that's compatible with Pasture is included (though you need to update some of its values for your own server). It should go in `/etc/jupyterhub_config.py`, and then `jupyterhub` can be run with:
+
+    jupyterhub -f /etc/jupyterhub_config.py
+
 ## Usage
 
 Clone this repo to your host machine.
