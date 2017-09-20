@@ -1,0 +1,6 @@
+#!/bin/bash
+
+USER=$1
+adduser --quiet --disabled-password --gecos "" $USER
+echo "$USER:$USER" | chpasswd
+echo "created $USER"
